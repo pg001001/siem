@@ -6,11 +6,6 @@ sudo apt update && sudo apt upgrade -y
 # Install dependencies
 sudo apt install -y curl apt-transport-https lsb-release gnupg2 software-properties-common
 
-# Install Wazuh
-curl -s https://packages.wazuh.com/4.8/wazuh-install.sh -o wazuh-install.sh
-chmod +x wazuh-install.sh
-sudo ./wazuh-install.sh -a
-
 # Add the Elasticsearch GPG key
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
 
@@ -37,6 +32,11 @@ sudo systemctl start kibana
 # Start and enable Logstash
 sudo systemctl enable --now logstash
 sudo systemctl start logstash
+
+# Install Wazuh
+curl -s https://packages.wazuh.com/4.8/wazuh-install.sh -o wazuh-install.sh
+chmod +x wazuh-install.sh
+sudo ./wazuh-install.sh -a
 
 # Enable and start Wazuh Manager service
 sudo systemctl enable wazuh-manager
